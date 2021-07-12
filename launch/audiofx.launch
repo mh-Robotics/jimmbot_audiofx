@@ -1,7 +1,10 @@
+<?xml version="1.0"?>
+<!-- 
 MIT License
 
-Mergim Halimi (m.halimi123@gmail.com)
-Copyright (c) 2021, mhRobotics, Inc., All rights reserved.
+@file      audiofx.launch
+@author    Mergim Halimi (m.halimi123@gmail.com)
+@copyright Copyright (c) 2021, mhRobotics, Inc., All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,3 +23,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+ -->
+<launch>
+ 
+  <rosparam command="load" file="$(find jimmbot_audiofx)/config/audiofx.yaml" />
+
+  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
+
+  <node pkg="audio_play" type="audio_play" name="audio_play_fx">
+    <remap from="/audio" to="/jimmbot_audiofx/buffer_play" />
+  </node>
+
+  <node pkg="jimmbot_audiofx" type="audiofx_loader" name="audiofx_loader_node" >
+    <remap from="/audio" to="/jimmbot_audiofx/buffer_play" />
+    <remap from="/extn_data" to="/jimmbot_controller/jimmbot_extn_data_controller/extn_data" />
+  </node>
+
+</launch>
