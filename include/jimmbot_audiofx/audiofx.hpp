@@ -17,7 +17,7 @@
 
 #include <sound_play/sound_play.h>
 #include <audio_common_msgs/AudioData.h>
-#include <jimmbot_msgs/extn_data.h>
+#include <jimmbot_msgs/ExtnDataStamped.h>
 #include <jimmbot_audiofx/audiofx.hpp>
 
 namespace jimmbot_audiofx
@@ -32,7 +32,7 @@ namespace jimmbot_audiofx
      * 
      * @param extn_data_msg 
      */
-    void extnDataMsgCallback(const jimmbot_msgs::extn_data::ConstPtr &extn_data_msg);
+    void extnDataMsgCallback(const jimmbot_msgs::ExtnDataStamped::ConstPtr &extn_data_msg);
 
   private:
     ros::Subscriber extn_data_sub_;
